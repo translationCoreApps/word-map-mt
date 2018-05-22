@@ -1,0 +1,40 @@
+{
+  "name": "word-mt",
+  "version": "0.1.0",
+  "description": "Multi-Lingual Word Machine Translation",
+  "main": "dist/index.js",
+  "scripts": {
+    "lint": "tslint -c tslint.json src/**/*.ts",
+    "docs": "typedoc --out docs --mode modules --target ES6",
+    "test": "npm run lint && jest",
+    "prebuild": "rm -rf dist",
+    "build": "tsc",
+    "postbuild": "cp -rf package.json dist && cp -rf README.md dist",
+    "dist": "npm test && npm run build && cd dist && npm publish"
+  },
+  "keywords": [
+    "word",
+    "map",
+    "tc",
+    "multilingual",
+    "linguistics",
+    "prediction",
+    "bible",
+    "translation",
+    "language"
+  ],
+  "author": "unfoldingword",
+  "license": "ISC",
+  "dependencies": {
+    "word-map": "^0.1.5"
+  },
+  "devDependencies": {
+    "@types/jest": "^22.2.3",
+    "codecov": "^3.0.2",
+    "jest": "^22.4.4",
+    "ts-jest": "^22.4.6",
+    "tslint": "^5.10.0",
+    "typedoc": "^0.11.1",
+    "typescript": "^2.8.3"
+  }
+}
