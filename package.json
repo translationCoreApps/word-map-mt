@@ -46,7 +46,7 @@
   },
   "homepage": "https://github.com/translationCoreApps/word-mt#readme",
   "dependencies": {
-    "word-map": "^0.1.5"
+    "word-map": "git+https://github.com/translationCoreApps/word-map.git#develop"
   },
   "devDependencies": {
     "@types/jest": "^22.2.3",
