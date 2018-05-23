@@ -4,8 +4,7 @@ import Suggestion from "word-map/structures/Suggestion";
 import Prediction from "word-map/structures/Prediction";
 import Ngram from "word-map/structures/Ngram";
 import Parser from "word-map/Parser";
-import UnalignedSentenceIndex from "word-map/index/UnalignedSentenceIndex";
-import Token from "word-map/structures/Token";
+import SentenceIndex from "./SentenceIndex";
 
 export interface PredictionTable {
     [key: string]: Prediction[];
@@ -42,10 +41,7 @@ export default class WordMT {
         const sourceTokens = Lexer.tokenize(sourceSentence);
         const sourceNgrams = Parser.ngrams(sourceTokens);
         const predictions: PredictionTable = {};
-        // TODO: we'll need to index the sentence similar to how we index the unaligned sentence pair.
-        // we probably need to create a new index class to manage that.
-        // const sentenceIndex = new SentenceIndex();
-        // sentenceIndex.append([sourceTokens], []);
+        const sentenceIndex = new SentenceIndex(sourceTokens);
 
         for (const n of sourceNgrams) {
             // TRICKY: we need predictions for each token position
