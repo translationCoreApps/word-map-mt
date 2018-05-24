@@ -1,7 +1,7 @@
 {
-  "name": "word-mt",
+  "name": "word-map-mt",
   "version": "0.1.0",
-  "description": "Multi-Lingual Word Machine Translation",
+  "description": "Word MAP Machine Translation",
   "main": "dist/index.js",
   "scripts": {
     "lint": "tslint -c tslint.json src/**/*.ts",
