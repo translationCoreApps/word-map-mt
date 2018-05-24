@@ -81,7 +81,7 @@ export default class WordMT {
             if (ngramPredictions.length > 0) {
                 // this is just a temporary sorting
                 table[key] = Engine.sortPredictions(ngramPredictions)
-                // TODO: filter/sort predictions by comparing the prediction scores with the sentence metrics.
+                // TODO: perform additional filtering by comparing the prediction scores with the sentence metrics.
             }
         }
 
@@ -95,16 +95,18 @@ export default class WordMT {
      * @return {Suggestion}
      */
     public translate(sourceSentence: string, maxSuggestions: number = 1): Suggestion[] {
-        const predictionTable = this.translateVerbose(sourceSentence, maxSuggestions);
-        const suggestion = new Suggestion();
-        for (const key of Object.keys(predictionTable)) {
-            // taking the easy route and just taking the first prediction for the n-gram
-            // TODO: for the suggestion to properly sort alignments we'd need to replace the
-            // source n-grams in the alignments with new n-grams built from tokens in the source sentence.
-            // otherwise they will have positions based on the corpus.
-            suggestion.addPrediction(predictionTable[key][0]);
+        const predictionsTable = this.translateVerbose(sourceSentence, maxSuggestions);
+        const suggestions: Suggestion[] = [];
+        // TODO: this is not the best way to build suggestions, but it works for now
+        for (const key of Object.keys(predictionsTable)) {
+            for (let i = 0; i < predictionsTable[key].length && i < maxSuggestions; i++) {
+                if(!suggestions[i]) {
+                    suggestions[i] = new Suggestion();
+                }
+                suggestions[i].addPrediction(predictionsTable[key][i])
+            }
         }
-        return [suggestion];
+        return suggestions;
     }
 
     /**
@@ -131,6 +133,7 @@ export default class WordMT {
                 this.addPrediction(p);
             }
         }
+        // if there was no corpus we still want to use the saved alignments
         for (const a of this.savedAlignments) {
             const p = new Prediction(a);
             // TRICKY: give saved alignments a strong confidence
@@ -140,7 +143,7 @@ export default class WordMT {
     }
 
     /**
-     * Finds predictions that are made against an n-gram
+     * Finds predictions that are made against an n-gram.
      * @param {Ngram} sourceNgram
      * @return {Prediction[]}
      */
