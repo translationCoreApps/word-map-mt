@@ -1,46 +1,30 @@
 import Ngram from "word-map/structures/Ngram";
 import Token from "word-map/structures/Token";
 import NgramIndex from "word-map/index/NgramIndex";
-
 /**
  * A collection of indexes on the static content.
  * NOTE: this is a variation of the static index found in {@link WordMap} with the target sentence removed.
  */
 export default class StaticIndex {
-    private ngramFreqIndex: NgramIndex;
-    private tokenLen: number;
-    private charLength: number;
-
+    private ngramFreqIndex;
+    private tokenLen;
+    private charLength;
     /**
      * Returns an index of source n-gram frequencies in the corpus
      * @return {NgramIndex}
      */
-    get ngramFrequency() {
-        return this.ngramFreqIndex;
-    }
-
+    readonly ngramFrequency: NgramIndex;
     /**
      * Returns the {@link Token} length of the entire source
      * @return {number}
      */
-    get tokenLength() {
-        return this.tokenLen;
-    }
-
+    readonly tokenLength: number;
     /**
      * Returns the character length of the entire source
      * @return {number}
      */
-    get characterLength() {
-        return this.charLength;
-    }
-
-    constructor() {
-        this.ngramFreqIndex = new NgramIndex();
-        this.tokenLen = 0;
-        this.charLength = 0;
-    }
-
+    readonly characterLength: number;
+    constructor();
     /**
      * Adds a sentence to the index.
      * The tokens in these n-grams must be measured for accurate positional metrics.
@@ -50,18 +34,5 @@ export default class StaticIndex {
      * @param sourceTokens - the source sentence tokens
      * @param sourceNgrams - the source sentence n-grams
      */
-    public addSentence(sourceTokens: Token[], sourceNgrams: Ngram[]) {
-        // token length
-        this.tokenLen += sourceTokens.length;
-
-        // character length
-        for (const token of sourceTokens) {
-            this.charLength += token.toString().length;
-        }
-
-        // n-gram frequency
-        for (const ngram of sourceNgrams) {
-            this.ngramFreqIndex.increment(ngram);
-        }
-    }
+    addSentence(sourceTokens: Token[], sourceNgrams: Ngram[]): void;
 }
