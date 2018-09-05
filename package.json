@@ -1,6 +1,6 @@
 {
   "name": "word-map-mt",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Word MAP Machine Translation",
   "main": "dist/index.js",
   "scripts": {
@@ -9,9 +9,8 @@
     "test": "npm run lint && jest",
     "prebuild": "rm -rf dist",
     "build": "tsc",
-    "postbuild": "cp -rf package.json dist && cp -rf README.md dist",
-    "prepare": "if [ -d './src/' ]; then npm run build && cp -r ./dist/* . && rm -rf ./dist; fi",
-    "dist": "npm test && npm run build && cd dist && npm publish"
+    "prepare": "if [ ! -d './dist/' ]; then npm run build; fi",
+    "dist": "npm test && npm run build && npm publish"
   },
   "repository": {
     "type": "git",
@@ -47,7 +46,8 @@
   },
   "homepage": "https://github.com/translationCoreApps/word-mt#readme",
   "dependencies": {
-    "word-map": "git+https://github.com/translationCoreApps/word-map.git#develop"
+    "word-map": "git+https://github.com/translationCoreApps/word-map.git#develop",
+    "wordmap-lexer": "^0.3.1"
   },
   "devDependencies": {
     "@types/jest": "^22.2.3",

@@ -1,6 +1,6 @@
-import Ngram from "word-map/structures/Ngram";
-import Token from "word-map/structures/Token";
-import NgramIndex from "word-map/index/NgramIndex";
+import Ngram from "word-map/dist/structures/Ngram";
+import Token from "word-map/dist/structures/Token";
+import NgramIndex from "word-map/dist/index/NgramIndex";
 
 /**
  * A collection of indexes on the static content.

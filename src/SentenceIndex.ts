@@ -1,5 +1,5 @@
-import Parser from "word-map/Parser";
-import Token from "word-map/structures/Token";
+import Parser from "word-map/dist/Parser";
+import {Token} from "wordmap-lexer";
 import StaticIndex from "./StaticIndex";
 
 /**

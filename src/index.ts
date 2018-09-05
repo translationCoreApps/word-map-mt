@@ -1,12 +1,12 @@
 import WordMap from 'word-map';
-import Lexer from 'word-map/Lexer';
-import Suggestion from "word-map/structures/Suggestion";
-import Prediction from "word-map/structures/Prediction";
-import Ngram from "word-map/structures/Ngram";
-import Parser from "word-map/Parser";
+import Lexer from 'wordmap-lexer';
+import Suggestion from "word-map/dist/structures/Suggestion";
+import Prediction from "word-map/dist/structures/Prediction";
+import Ngram from "word-map/dist/structures/Ngram";
+import Parser from "word-map/dist/Parser";
 import SentenceIndex from "./SentenceIndex";
-import Engine from "word-map/Engine";
-import Alignment from "word-map/structures/Alignment";
+import Engine from "word-map/dist/Engine";
+import Alignment from "word-map/dist/structures/Alignment";
 
 export interface PredictionTable {
     [key: string]: Prediction[];

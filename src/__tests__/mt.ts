@@ -1,5 +1,5 @@
+import Suggestion from "word-map/dist/structures/Suggestion";
 import WordMT from "../";
-import Suggestion from "word-map/structures/Suggestion";
 
 describe("MT", () => {
     it("has no corpus", () => {
