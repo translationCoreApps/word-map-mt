@@ -2,16 +2,30 @@ import WordMAP, {Alignment, Engine, Ngram, Parser, Prediction, Suggestion} from 
 import Lexer from "wordmap-lexer";
 import SentenceIndex from "./SentenceIndex";
 
+/**
+ * A keyed table of predictions
+ */
 export interface PredictionTable {
     [key: string]: Prediction[];
 }
 
 /**
- * WordMAP based Machine Translation.
+ * Produces WordMAP based Machine Translation.
  */
 export default class Translator {
+    /**
+     * An instance of WordMAP
+     */
     private map: WordMAP;
+
+    /**
+     * Textual data used as the prediction dataset
+     */
     private corpus: string[][];
+
+    /**
+     * Human approved word alignments
+     */
     private alignmentMemory: Alignment[];
     private suggestions: Suggestion[];
     private predictions: PredictionTable;
@@ -34,7 +48,8 @@ export default class Translator {
     }
 
     /**
-     * Appends a bunch of saved alignments to the translator.
+     * Appends an array of human approved word alignments.
+     * This increases accuracy.
      * @param {Alignment[]} alignments
      */
     public appendAlignmentMemory(alignments: Alignment[]) {
@@ -43,7 +58,8 @@ export default class Translator {
     }
 
     /**
-     * Appends a saved alignment to the translator
+     * Appends a human approved word alignment.
+     * This increases accuracy.
      * @param {string} source - the aligned source n-gram text
      * @param {string} target - the aligned target n-gram text
      */
@@ -53,9 +69,9 @@ export default class Translator {
     }
 
     /**
-     * Generates a verbose translation.
-     * @param {string} sourceSentence
-     * @param maxSuggestions
+     * Generates a table of sorted translation predictions for various n-gram combinations.
+     * @param {string} sourceSentence - the sentence being translated
+     * @param maxSuggestions - the maximum number of suggestions to generate
      * @return {PredictionTable}
      */
     public translateVerbose(sourceSentence: string, maxSuggestions: number = 1): PredictionTable {
@@ -83,8 +99,8 @@ export default class Translator {
     }
 
     /**
-     * Generates a translation suggestion
-     * @param {string} sourceSentence
+     * Generates translation predictions for a sentence
+     * @param {string} sourceSentence - the sentence being translated
      * @param {number} maxSuggestions - the number of suggestions to produce
      * @return {Suggestion}
      */

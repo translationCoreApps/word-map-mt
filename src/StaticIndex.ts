@@ -4,7 +4,7 @@ import NgramIndex from "wordmap/dist/index/NgramIndex";
 
 /**
  * A collection of indexes on the static content.
- * NOTE: this is a variation of the static index found in {@link WordMap} with the target sentence removed.
+ * NOTE: this is a variation of the static index found in {@link WordMAP} with the target sentence removed.
  */
 export default class StaticIndex {
     private ngramFreqIndex: NgramIndex;
