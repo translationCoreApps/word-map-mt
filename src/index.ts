@@ -13,7 +13,7 @@ export interface PredictionTable {
 }
 
 /**
- * Word Machine Translation
+ * WordMAP based Machine Translation.
  */
 export default class WordMT {
     private map: WordMap;
