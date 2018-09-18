@@ -1,6 +1,6 @@
-import Ngram from "word-map/structures/Ngram";
-import Token from "word-map/structures/Token";
-import NgramIndex from "word-map/index/NgramIndex";
+import {Ngram} from "wordmap";
+import {Token} from "wordmap-lexer";
+import NgramIndex from "wordmap/dist/index/NgramIndex";
 
 /**
  * A collection of indexes on the static content.
@@ -10,6 +10,12 @@ export default class StaticIndex {
     private ngramFreqIndex: NgramIndex;
     private tokenLen: number;
     private charLength: number;
+
+    constructor() {
+        this.ngramFreqIndex = new NgramIndex();
+        this.tokenLen = 0;
+        this.charLength = 0;
+    }
 
     /**
      * Returns an index of source n-gram frequencies in the corpus
@@ -33,12 +39,6 @@ export default class StaticIndex {
      */
     get characterLength() {
         return this.charLength;
-    }
-
-    constructor() {
-        this.ngramFreqIndex = new NgramIndex();
-        this.tokenLen = 0;
-        this.charLength = 0;
     }
 
     /**

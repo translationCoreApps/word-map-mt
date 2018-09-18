@@ -1,6 +1,6 @@
-import Parser from "word-map/Parser";
-import Token from "word-map/structures/Token";
+import {Parser} from "wordmap";
 import StaticIndex from "./StaticIndex";
+import {Token} from "wordmap-lexer";
 
 /**
  * A collection of indexes for a sentence

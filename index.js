@@ -29,7 +29,7 @@ class WordMT {
      * @param {Alignment[]} alignments
      */
     appendSavedAlignments(alignments) {
-        this.map.appendSavedAlignments(alignments);
+        this.map.appendAlignmentMemory(alignments);
         this.savedAlignments = this.savedAlignments.concat(alignments);
     }
     /**
@@ -38,7 +38,7 @@ class WordMT {
      * @param {string} target - the aligned target n-gram text
      */
     appendSavedAlignmentsString(source, target) {
-        const alignments = this.map.appendSavedAlignmentsString(source, target);
+        const alignments = this.map.appendAlignmentMemoryString(source, target);
         this.savedAlignments = this.savedAlignments.concat(alignments);
     }
     /**

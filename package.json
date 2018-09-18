@@ -1,21 +1,21 @@
 {
-  "name": "word-map-mt",
-  "version": "0.1.0",
-  "description": "Word MAP Machine Translation",
+  "name": "wordmap-mt",
+  "version": "0.2.0",
+  "description": "WordMAP Machine Translation",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
+    "test": "npm run lint && jest",
     "lint": "tslint -c tslint.json src/**/*.ts",
     "docs": "typedoc --out docs --mode modules --target ES6",
-    "test": "npm run lint && jest",
     "prebuild": "rm -rf dist",
     "build": "tsc",
-    "postbuild": "cp -rf package.json dist && cp -rf README.md dist",
-    "prepare": "if [ -d './src/' ]; then npm run build && cp -r ./dist/* . && rm -rf ./dist; fi",
-    "dist": "npm test && npm run build && cd dist && npm publish"
+    "prepare": "if [ ! -d './dist/' ]; then npm run build; fi",
+    "prepublishOnly": "npm test && npm run build"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/translationCoreApps/word-mt.git"
+    "url": "git+https://github.com/translationCoreApps/wordMAP-mt.git"
   },
   "jest": {
     "moduleFileExtensions": [
@@ -41,21 +41,21 @@
     "language"
   ],
   "author": "unfoldingword",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/translationCoreApps/word-mt/issues"
+    "url": "https://github.com/translationCoreApps/wordMAP-mt/issues"
   },
-  "homepage": "https://github.com/translationCoreApps/word-mt#readme",
+  "homepage": "https://github.com/translationCoreApps/wordMAP-mt#readme",
   "dependencies": {
-    "word-map": "git+https://github.com/translationCoreApps/word-map.git#develop"
+    "wordmap": "^0.4.0",
+    "wordmap-lexer": "^0.3.2"
   },
   "devDependencies": {
-    "@types/jest": "^22.2.3",
-    "codecov": "^3.0.2",
-    "jest": "^22.4.4",
-    "ts-jest": "^22.4.6",
-    "tslint": "^5.10.0",
+    "@types/jest": "^23.3.2",
+    "jest": "^23.6.0",
+    "ts-jest": "^23.1.4",
+    "tslint": "^5.11.0",
     "typedoc": "^0.11.1",
-    "typescript": "^2.8.3"
+    "typescript": "^3.0.3"
   }
 }
